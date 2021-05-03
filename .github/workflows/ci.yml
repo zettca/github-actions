@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch: # Allows you to run this workflow manually
+
+jobs:
+  empty-job:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo empty
+  build-job:
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
