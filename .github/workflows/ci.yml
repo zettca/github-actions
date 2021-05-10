@@ -9,15 +9,13 @@ on:
   
 env:
   VAR1: test1
-  VAR2: ${{env.VAR1}}2
 
 jobs:
-  empty-job:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo empty
   build-job:
     runs-on: ubuntu-latest
+    
+    env:
+      VAR2: ${{env.VAR1}}2
 
     # Steps represent a sequence of tasks that will be executed
     steps:
