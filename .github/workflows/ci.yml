@@ -25,6 +25,9 @@ jobs:
 
       - name: Print env
         run: env
+        
+      - name: Print pwd
+        run: pwd
 
       - name: Run a one-line script
         run: echo Hello, world!
