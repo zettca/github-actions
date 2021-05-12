@@ -9,6 +9,7 @@ on:
   
 env:
   VAR1: test1
+  VERSIONS_TO_KEEP: 3
 
 jobs:
   build-job:
@@ -25,6 +26,9 @@ jobs:
 
       - name: Print env
         run: env
+        
+      - name: Perform bash calc
+        run: echo $(($GITHUB_RUN_NUMBER - $VERSIONS_TO_KEEP))
         
       - name: Print stuff
         run: |
