@@ -8,12 +8,15 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually
   
 env:
-  VAR1: test1
+  VAR1: false
   VERSIONS_TO_KEEP: 3
 
 jobs:
   build-job:
     runs-on: ubuntu-latest
+    
+    env:
+      VAR2: false
 
     # Steps represent a sequence of tasks that will be executed
     steps:
@@ -23,6 +26,14 @@ jobs:
 
       - name: Test
         run: echo $VAR1 $VAR2
+        
+      - name: Test conditional 1
+        if: ${{ env.VAR1 }}
+        run: echo Passed
+      
+      - name: Test conditional 2
+        if: ${{ env.VAR2 }}
+        run: echo Passed
 
       - name: Print env
         run: env
