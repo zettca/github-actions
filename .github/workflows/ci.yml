@@ -10,7 +10,6 @@ on:
 env:
   VAR1: false
   VERSIONS_TO_KEEP: 3
-  CONDITION: false
 
 jobs:
   Build:
@@ -58,7 +57,7 @@ jobs:
           echo test, and deploy your project.
           
   Build2:
-    if: ${{ env.CONDITION == true }}
+    if: ${{ false }}
     name: "Build v2"
     runs-on: ubuntu-latest
     
