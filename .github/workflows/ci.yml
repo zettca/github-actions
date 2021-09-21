@@ -28,12 +28,12 @@ jobs:
         run: echo $VAR1 $VAR2
         
       - name: Test conditional 1
-        if: ${{ env.VAR1 }}
-        run: echo Passed
+        if: ${{ env.VAR1 == true }}
+        run: echo "It ran 🏃‍☹️"
       
       - name: Test conditional 2
-        if: ${{ env.VAR2 }}
-        run: echo Passed
+        if: ${{ env.VAR2 == true }}
+        run: echo "It ran 🏃‍☹️"
 
       - name: Print env
         run: env
