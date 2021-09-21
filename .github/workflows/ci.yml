@@ -10,9 +10,11 @@ on:
 env:
   VAR1: false
   VERSIONS_TO_KEEP: 3
+  CONDITION: false
 
 jobs:
-  build-job:
+  Build:
+    name: "Build stuff 🔨"
     runs-on: ubuntu-latest
     
     env:
@@ -54,3 +56,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+          
+  Build2:
+    if: ${{ env.CONDITION == true }}
+    name: "Build v2"
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: echo "it ran"
+    
