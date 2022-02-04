@@ -25,25 +25,28 @@ jobs:
         with:
           ref: master
 
+      - name: PWD
+        run: pwd
+
       - name: Test
         env:
           VAR3: "Hello ${{env.VAR1}}"
         run: echo $VAR1 $VAR2 $VAR3
-        
+
       - name: Test conditional 1
         if: ${{ env.VAR1 == true }}
         run: echo "It ran 🏃‍☹️"
-      
+
       - name: Test conditional 2
         if: ${{ env.VAR2 == true }}
         run: echo "It ran 🏃‍☹️"
 
       - name: Print env
         run: env
-        
+
       - name: Perform bash calc
         run: echo $(($GITHUB_RUN_NUMBER - $VERSIONS_TO_KEEP))
-        
+
       - name: Print stuff
         run: |
           pwd
@@ -57,12 +60,12 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          
+
   Build2:
     if: ${{ false }}
     name: "Build v2"
     runs-on: ubuntu-latest
-    
+
     steps:
       - run: echo "it ran"
-    
+
