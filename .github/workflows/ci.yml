@@ -18,6 +18,7 @@ jobs:
     
     env:
       VAR2: false
+      VAR3: "Hello $VAR1"
 
     # Steps represent a sequence of tasks that will be executed
     steps:
@@ -26,7 +27,7 @@ jobs:
           ref: master
 
       - name: Test
-        run: echo $VAR1 $VAR2
+        run: echo $VAR1 $VAR2 $VAR3
         
       - name: Test conditional 1
         if: ${{ env.VAR1 == true }}
