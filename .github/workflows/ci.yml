@@ -18,7 +18,7 @@ jobs:
     
     env:
       VAR2: false
-      VAR3: "Hello $VAR1"
+      VAR3: "Hello ${{env.VAR1}}"
 
     # Steps represent a sequence of tasks that will be executed
     steps:
