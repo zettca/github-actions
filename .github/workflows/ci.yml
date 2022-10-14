@@ -14,7 +14,7 @@ on:
   
 env:
   VAR1: false
-  VAR_IN1: ${{github.event.inputs.customKey || "fallback1"}}
+  VAR_IN1: ${{github.event.inputs.customKey}}
   VERSIONS_TO_KEEP: 3
 
 jobs:
