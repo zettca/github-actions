@@ -6,9 +6,15 @@ on:
   pull_request:
     branches: [master]
   workflow_dispatch: # Allows you to run this workflow manually
+    inputs:
+      customKey:
+        description: "Custom thing"
+        required: true
+        default: "MY_VALUE_123"
   
 env:
   VAR1: false
+  VAR_IN1: ${{github.event.inputs.customKey}}
   VERSIONS_TO_KEEP: 3
 
 jobs:
@@ -18,6 +24,7 @@ jobs:
     
     env:
       VAR2: false
+      VAR_IN2: ${{github.event.inputs.customKey}}
 
     # Steps represent a sequence of tasks that will be executed
     steps:
@@ -31,7 +38,7 @@ jobs:
       - name: Test
         env:
           VAR3: "Hello ${{env.VAR1}}"
-        run: echo $VAR1 $VAR2 $VAR3
+        run: echo $VAR1 $VAR2 $VAR3 $VAR_IN1 $VAR_IN2
 
       - name: Test conditional 1
         if: ${{ env.VAR1 == true }}
