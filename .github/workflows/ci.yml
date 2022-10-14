@@ -14,7 +14,7 @@ on:
   
 env:
   VAR1: false
-  VAR_IN1: ${{github.event.inputs.customKey}}
+  VAR_IN1: ${{github.event.inputs.customKey || "fallback1"}}
   VERSIONS_TO_KEEP: 3
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
     
     env:
       VAR2: false
-      VAR_IN2: ${{github.event.inputs.customKey}}
+      VAR_IN2: ${{github.event.inputs.customKey || "fallback2"}}
 
     # Steps represent a sequence of tasks that will be executed
     steps:
@@ -35,7 +35,7 @@ jobs:
       - name: PWD
         run: pwd
 
-      - name: Test
+      - name: PRINT VARIABLES
         env:
           VAR3: "Hello ${{env.VAR1}}"
         run: echo $VAR1 $VAR2 $VAR3 $VAR_IN1 $VAR_IN2
