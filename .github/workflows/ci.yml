@@ -16,7 +16,6 @@ env:
   VAR1: false
   VAR_TEST: test-${{github.event.inputs.customKey}}
   VAR_IN1: ${{github.event.inputs.customKey || 'fallback2'}}
-  VAR_IN2: ${{github.event.inputs.customKey || env.VAR_TEST }}
   VERSIONS_TO_KEEP: 3
 
 jobs:
@@ -27,6 +26,7 @@ jobs:
     env:
       VAR2: false
       VAR_IN2: ${{github.event.inputs.customKey || 'fallback2'}}
+      VAR_IN42: ${{github.event.inputs.customKey || env.VAR_TEST }}
 
     # Steps represent a sequence of tasks that will be executed
     steps:
