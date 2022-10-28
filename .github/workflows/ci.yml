@@ -35,7 +35,7 @@ jobs:
         with:
           ref: master
           
-      - run: OUTPUT=${TMP_VAR:-$FALLBACK}
+      - run: OUTPUT=${TMP_VAR:-FALLBACK}
         
       - run: echo $OUTPUT
 
