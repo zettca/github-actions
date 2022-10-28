@@ -14,6 +14,7 @@ on:
   
 env:
   VAR1: false
+  TMP_VAR: ""
   VAR_TEST: test-${{github.event.inputs.customKey}}
   VAR_IN1: ${{github.event.inputs.customKey || 'fallback2'}}
   VERSIONS_TO_KEEP: 3
@@ -35,9 +36,7 @@ jobs:
         with:
           ref: master
           
-      - run: |
-        OUT=${{github.event.inputs.customKey}}
-        OUTPUT=${TMP_VAR:-$FALLBACK}
+      - run: OUTPUT=${TMP_VAR:-$FALLBACK}
         
       - run: echo $OUTPUT
 
