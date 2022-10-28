@@ -28,7 +28,6 @@ jobs:
       VAR2: false
       FALLBACK: "stringue"
       VAR_IN2: ${{github.event.inputs.customKey || 'fallback2'}}
-      VAR_IN42: ${{github.event.inputs.customKey || $VAR_TEST }}
 
     # Steps represent a sequence of tasks that will be executed
     steps:
