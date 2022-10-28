@@ -28,16 +28,19 @@ jobs:
       VAR2: false
       FALLBACK: "stringue"
       VAR_IN2: ${{github.event.inputs.customKey || 'fallback2'}}
+      PARAM_VAR: ${{github.event.inputs.customKey}}
 
     # Steps represent a sequence of tasks that will be executed
     steps:
       - uses: actions/checkout@v2
         with:
           ref: master
-          
-      - run: OUTPUT=${TMP_VAR:-$FALLBACK}
         
-      - run: echo $OUTPUT
+      - name: Fallback set var
+        if: env.PARAM_VAR == null
+        run: echo "PARAM_VAR=${{env.FALLBACK}}" >> $GITHUB_ENV
+        
+      - run: echo "PARAM_VAR=$PARAM_VAR"
 
       - name: PWD
         run: pwd
