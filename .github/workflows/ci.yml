@@ -25,6 +25,7 @@ jobs:
     
     env:
       VAR2: false
+      FALLBACK: "stringue"
       VAR_IN2: ${{github.event.inputs.customKey || 'fallback2'}}
       VAR_IN42: ${{github.event.inputs.customKey || $VAR_TEST }}
 
@@ -33,6 +34,12 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: master
+          
+      - run: |
+        OUT=${{github.event.inputs.customKey}}
+        OUTPUT=${TMP_VAR:-$FALLBACK}
+        
+      - run: echo $OUTPUT
 
       - name: PWD
         run: pwd
