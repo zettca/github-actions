@@ -51,7 +51,7 @@ jobs:
         run: echo $VAR1 $VAR2 $VAR3 $VAR_IN1 $VAR_IN2
 
       - name: Test conditional 1
-        if: ${{ env.VAR1 == true }}
+        if: ${{ env.VAR1 == true || github.event.inputs.customKey != null }}
         run: echo "It ran 🏃‍☹️"
 
       - name: Test conditional 2
