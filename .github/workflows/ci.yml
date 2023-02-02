@@ -96,7 +96,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - run: |
+          echo ${{ github.workspace }}
+          echo $GITHUB_WORKSPACE
+
       - uses: ./.github/actions/docker-test
         with:
-          input1: ${{GITHUB_WORKSPACE}}
+          input1: ${{github.workspace}}
           input2: "testValue"
