@@ -1,5 +1,5 @@
 FROM denoland/deno
 
-COPY main.ts /main.ts
+COPY . .
 
 ENTRYPOINT [ "deno", "run", "--allow-env", "--allow-read", "/main.ts" ]
