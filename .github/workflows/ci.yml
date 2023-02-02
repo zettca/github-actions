@@ -11,7 +11,7 @@ on:
         description: "Custom thing"
         required: true
         default: "MY_VALUE_123"
-  
+
 env:
   VAR1: false
   TMP_VAR: ""
@@ -23,7 +23,7 @@ jobs:
   Build:
     name: "Build stuff 🔨"
     runs-on: ubuntu-latest
-    
+
     env:
       VAR2: false
       FALLBACK: "stringue"
@@ -32,14 +32,14 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: master
-        
+
       - name: Fallback set var
         if: env.PARAM_VAR == null
         run: echo "PARAM_VAR=${{env.FALLBACK}}" >> $GITHUB_ENV
-        
+
       - run: echo "PARAM_VAR=$PARAM_VAR"
 
       - name: PWD
@@ -86,3 +86,17 @@ jobs:
     steps:
       - run: echo "it ran"
 
+  CustomAction:
+    name: "Custom Docker Action 🐳 🦕"
+    runs-on: ubuntu-latest
+
+    env:
+      SECRET: "test"
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: ./actions/docker-test
+        with:
+          input1: "."
+          input2: "testValue"

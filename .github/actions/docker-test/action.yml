@@ -1,0 +1,20 @@
+name: "Docker Deno"
+description: "Docker Deno action test"
+inputs:
+  input1:
+    description: "input1"
+    required: true
+    default: "default1"
+  input2:
+    description: "input2"
+    required: false
+    default: "default2"
+outputs:
+  outpute:
+    description: "Test output"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.input1 }}
+    - ${{ inputs.input2 }}
