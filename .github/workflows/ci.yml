@@ -96,7 +96,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: ./actions/docker-test
+      - uses: ./.github/actions/docker-test
         with:
           input1: "."
           input2: "testValue"
