@@ -98,5 +98,5 @@ jobs:
 
       - uses: ./.github/actions/docker-test
         with:
-          input1: "."
+          input1: $GITHUB_WORKSPACE
           input2: "testValue"
