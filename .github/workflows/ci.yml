@@ -102,5 +102,5 @@ jobs:
 
       - uses: ./.github/actions/docker-test
         with:
-          input1: ${{github.workspace}}
+          input1: "."
           input2: "testValue"
