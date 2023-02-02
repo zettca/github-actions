@@ -96,7 +96,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - run: |
+          echo $GITHUB_WORKSPACE
+          cat ${{ github.workspace }}/README.md
+
       - uses: ./.github/actions/docker-test
         with:
-          input1: $GITHUB_WORKSPACE
+          input1: ./docs
           input2: "testValue"
