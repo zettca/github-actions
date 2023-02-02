@@ -10,6 +10,9 @@ if (!path) Deno.exit(1);
 
 console.log("Files:");
 
+console.log(Deno.cwd());
+console.log("README", await Deno.readTextFile("./README.md"));
+
 for await (const dirEntry of Deno.readDir(path)) {
   console.log(dirEntry);
 }
