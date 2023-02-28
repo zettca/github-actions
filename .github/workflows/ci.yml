@@ -18,6 +18,7 @@ env:
   VAR_TEST: test-${{github.event.inputs.customKey}}
   VAR_IN1: ${{github.event.inputs.customKey || 'fallback2'}}
   VERSIONS_TO_KEEP: 3
+  VAR_GLOBAL: "GLOBAL"
 
 jobs:
   Build:
@@ -28,6 +29,7 @@ jobs:
       VAR2: false
       FALLBACK: "stringue"
       VAR_IN2: ${{github.event.inputs.customKey || 'fallback2'}}
+      VAR_FLOW: "${{env.VAR_GLOBAL}}-FLOW"
       PARAM_VAR: ${{github.event.inputs.customKey}}
 
     # Steps represent a sequence of tasks that will be executed
@@ -44,6 +46,12 @@ jobs:
 
       - name: PWD
         run: pwd
+        
+      - name: Parent VARIABLES
+        env:
+          VAR_STEP1: "${{env.VAR_GLOBAL}}-STEP"
+          VAR_STEP2: "${{env.VAR_FLOW}}-STEP"
+        run: echo $VAR_STEP1 $VAR_STEP2
 
       - name: PRINT VARIABLES
         env:
