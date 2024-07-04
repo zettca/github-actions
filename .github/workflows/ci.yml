@@ -86,6 +86,13 @@ jobs:
     steps:
       - run: echo "it ran"
 
+  Reusable:
+    uses: ./.github/workflows/reusable.yml
+
+  ReusableNamed:
+    name: Reusable Named
+    uses: ./.github/workflows/reusable.yml
+
   CustomAction:
     name: "Custom Docker Action 🐳 🦕"
     runs-on: ubuntu-latest
@@ -98,5 +105,5 @@ jobs:
 
       - uses: ./.github/actions/docker-test
         with:
-          input1: $GITHUB_WORKSPACE
+          input1: ${{github.workspace}}
           input2: "testValue"

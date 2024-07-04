@@ -1,0 +1,47 @@
+name: Reusable
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  test:
+    name: Test 👀
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed
+    steps:
+      - name: PWD
+        run: pwd
+
+      - run: echo "PARAM_VAR=1234" >> $GITHUB_ENV
+
+      - run: echo $PARAM_VAR
+
+      - name: Print env
+        run: env
+
+      - name: Perform bash calc
+        run: echo $(($GITHUB_RUN_NUMBER - $PARAM_VAR))
+
+      - name: Print stuff
+        run: |
+          pwd
+          echo $RUNNER_WORKSPACE
+          echo $GITHUB_WORKSPACE
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+
+  test2:
+    if: ${{ false }}
+    name: Test 2
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: echo "it ran"
