@@ -1,8 +1,15 @@
 name: Reusable
 
 on:
-  workflow_dispatch:
   workflow_call:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Branch to run on"
+        type: choice
+        options: [master, next, dev]
+        required: true
+        default: "master"
 
 jobs:
   test:
