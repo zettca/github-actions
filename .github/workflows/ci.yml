@@ -12,6 +12,10 @@ on:
         required: true
         default: "MY_VALUE_123"
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   VAR1: false
   TMP_VAR: ""
@@ -32,7 +36,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: master
 
@@ -89,9 +93,22 @@ jobs:
   Reusable:
     uses: ./.github/workflows/reusable.yml
 
-  ReusableNamed:
-    name: Reusable Named
-    uses: ./.github/workflows/reusable.yml
+  Setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - uses: ./.github/actions/setup
+        with:
+          install-deps: false
+
+      - run: cat README.md
+
+      - run: git log
 
   CustomAction:
     name: "Custom Docker Action 🐳 🦕"
@@ -101,7 +118,7 @@ jobs:
       SECRET: "test"
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: ./.github/actions/docker-test
         with:
