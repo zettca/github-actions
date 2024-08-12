@@ -90,6 +90,7 @@ jobs:
         id: result
         run: |
           echo "JOUT1=MyValue" >> $GITHUB_OUTPUT
+          echo "JOUT2=" >> $GITHUB_OUTPUT
 
   Build2:
     if: ${{ false }}
