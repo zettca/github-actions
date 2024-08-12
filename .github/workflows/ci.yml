@@ -108,7 +108,7 @@ jobs:
 
       - run: cat README.md
 
-      - run: git log
+      - run: git log --oneline -n 200
 
   CustomAction:
     name: "Custom Docker Action 🐳 🦕"
