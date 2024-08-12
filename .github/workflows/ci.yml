@@ -110,6 +110,8 @@ jobs:
 
       - run: git log --oneline -n 200
 
+      - run: git tag
+
   CustomAction:
     name: "Custom Docker Action 🐳 🦕"
     runs-on: ubuntu-latest
