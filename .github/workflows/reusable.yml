@@ -10,6 +10,10 @@ on:
         options: [master, next, dev]
         required: true
         default: "master"
+      param:
+        description: "Custom thing"
+        type: string
+        required: false
 
 jobs:
   test:
@@ -36,6 +40,14 @@ jobs:
           pwd
           echo $RUNNER_WORKSPACE
           echo $GITHUB_WORKSPACE
+
+      - name: Run if inputs.param == null
+        if: ${{!inputs.param}}
+        run: echo "inputs.param is undefined!"
+
+      - name: Run if inputs.param == null
+        if: ${{inputs.param}}
+        run: echo "inputs.param defined ${{inputs.param}}"
 
       - name: Run a one-line script
         run: echo Hello, world!
