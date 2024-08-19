@@ -33,4 +33,4 @@ jobs:
           VERSION=v0.1.0-${{ github.run_number }}
           echo "Tagging $VERSION"
           git tag -a "$VERSION" -m "Tag $VERSION"
-          git push $VERSION
+          git push origin "$VERSION"
