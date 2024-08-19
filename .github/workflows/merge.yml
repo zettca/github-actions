@@ -26,13 +26,11 @@ jobs:
 
       - run: git remote -vv
 
-      - run: git log -1
-
-      - run: git log --oneline -n 60
+      - run: git log --oneline -n 20
 
       - name: tag
         run: |
           VERSION=v0.1.0-${{ github.run_number }}
           echo "Tagging $VERSION"
-          git tag -a $VERSION -m "Tag $VERSION"
+          git tag -a "$VERSION" -m "Tag $VERSION"
           git push $VERSION
