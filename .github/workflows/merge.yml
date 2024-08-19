@@ -15,15 +15,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: Config git user
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
 
+      - run: git remote -vv
+
+      - run: git log -1
+
+      - run: git log --oneline -n 60
+
       - name: tag
         run: |
-          VERSION=v${{ github.run_number }}
+          VERSION=v0.1.0-${{ github.run_number }}
           echo "Tagging $VERSION"
           git tag -a $VERSION -m "Tag $VERSION"
           git push $VERSION
