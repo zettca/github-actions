@@ -23,4 +23,9 @@ jobs:
 
     steps:
       - run: node -e 'const os=require("os");console.log(os.availableParallelism())'
-      - run: git log
+
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - run: git log --decorate
